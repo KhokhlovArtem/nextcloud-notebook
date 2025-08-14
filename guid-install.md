@@ -1,4 +1,3 @@
-```markdown
 # Установка Nextcloud на AlmaLinux и Ubuntu
 
 ## AlmaLinux
