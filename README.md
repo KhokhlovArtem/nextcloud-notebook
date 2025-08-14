@@ -134,4 +134,5 @@ occ talk:hpb test
 
 Более подробная информация:  
 [Nextcloud HPB with Docker Documentation](https://github.com/nextcloud-snap/nextcloud-snap/wiki/How-to-configure-talk-HPB-with-Docker)
+[Nextcloud Scalability](https://nextcloud-talk.readthedocs.io/en/latest/scalability/)
 ```
