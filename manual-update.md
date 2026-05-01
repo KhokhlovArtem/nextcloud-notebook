@@ -45,7 +45,16 @@ cp $NEXTCLOUD_PATH/config/config.php $BACKUP_PATH/
 ## Шаг 2. Переводим сервер nextcloud в режим обслуживания.
 
 Ставьте сервер в режим обслуживания **до начала**:
+
+### 2.1 Перейдите в папку Nextcloud
+
 ```bash
+cd /srv/nextcloud/    # укажите ваш путь
+```
+
+### Шаг 2.2 Переводим сервер nextcloud в режим обслуживания.
+
+```
 sudo -u www-data php occ maintenance:mode --on
 ```
 
@@ -79,7 +88,7 @@ nginx -v   # или apache2 -v
 
 ## Шаг 4. Обновление Nextcloud
 
-### 4.1 Переключитесь на пользователя веб-сервера
+X### 4.1 Переключитесь на пользователя веб-сервера
 
 ```bash
 sudo -u www-data bash   # Debian/Ubuntu
@@ -90,17 +99,17 @@ sudo -u apache bash     # CentOS/RHEL
 ### 4.2 Перейдите в папку Nextcloud
 
 ```bash
-cd /var/www/nextcloud   # укажите ваш путь
+cd /srv/nextcloud/   # укажите ваш путь
 ```
 
 ### 4.3 Запустите ручное обновление через updater
 
 ```bash
-sudo -u www-data php /var/www/nextcloud/updater/updater.phar --no-backup
+sudo -u www-data php updater/updater.phar --no-backup
 ```
 
 > **Почему `--no-backup`?**  
-> Мы уже сделали резервную копию вручную (Шаг 1). Встроенный бекап апдейтера часто прерывается из-за нехватки памяти или таймаута. Но используйте флаг только если уверены в ручном бекапе!
+> Мы уже сделали резервную копию вручную (Шаг 1).
 
 ### 4.4 Что вы увидите в консоли
 
@@ -124,13 +133,17 @@ chmod -R 755 /var/www/nextcloud
 
 ---
 
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$ТУТ$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
 ## Шаг 5. Завершающие действия
 
 ### 5.1 Очистите кеш
 
 ```bash
-sudo -u www-data php /var/www/nextcloud/occ maintenance:repair
-sudo -u www-data php /var/www/nextcloud/occ db:add-missing-indices
+sudo -u www-data php occ maintenance:repair
+sudo -u www-data php occ db:add-missing-indices
 ```
 
 ### 5.2 Проверьте версию
@@ -140,13 +153,13 @@ sudo -u www-data php /var/www/nextcloud/occ db:add-missing-indices
 Или через консоль:
 
 ```bash
-sudo -u www-data php /var/www/nextcloud/occ status
+sudo -u www-data php occ status
 ```
 
 ### 5.3 Перезапустите веб-сервер и PHP-FPM (если используется)
 
 ```bash
-sudo systemctl restart nginx php8.1-fpm   # пример для Ubuntu
+sudo systemctl restart nginx php8.3-fpm.service   # пример для Ubuntu
 ```
 
 ## Шаг 6. Переводим сервер nextcloud в режим работы .
@@ -200,7 +213,7 @@ sudo systemctl start nginx
 
 ---
 
-**Инструкция составлена для:** Nextcloud 30+  
-**Последний раз тестировалась:** (дата)
+**Инструкция составлена для:** Nextcloud 31+  
+**Последний раз тестировалась:** 01.05.26
 ```
 Этот файл можно положить в папку `docs/` внутри проекта клиента или выдать как приложение к договору на техподдержку. Текст написан так, чтобы его мог выполнить даже начинающий администратор после небольшого пояснения.
