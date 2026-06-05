@@ -6,7 +6,7 @@ sudo -u www-data php /srv/nextcloud/occ app:disable user_ldap
 ```
 
 ``` ON
-sudo -u www-data php /srv/nextcloud/occ app:disable user_ldap
+sudo -u www-data php /srv/nextcloud/occ app:enable user_ldap
 ```
 
 ## Выключить активную конфигурацию 
